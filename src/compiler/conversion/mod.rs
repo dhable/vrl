@@ -159,7 +159,7 @@ impl Conversion {
                 let parsed = s
                     .parse::<f64>()
                     .with_context(|_| FloatParseSnafu { s: s.clone() })?;
-                if !parsed.is_normal() {
+                if parsed != 0.0 && !parsed.is_normal() {
                     return Err(Error::NanFloat {
                         s: format!("Invalid float \"{s}\": not a normal f64 number"),
                     });
